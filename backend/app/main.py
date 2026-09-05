@@ -74,3 +74,13 @@ def read_current_user(current_user: User = Depends(get_current_user)):
         "email": current_user.email,
         "role": current_user.role
     }
+@app.get("/debug/routes")
+def debug_routes():
+    return [
+        {
+            "path": getattr(route, "path", None),
+            "name": getattr(route, "name", None),
+            "type": route.__class__.__name__,
+        }
+        for route in app.routes
+    ]
