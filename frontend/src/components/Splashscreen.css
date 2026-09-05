@@ -1,0 +1,463 @@
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #071a35 0%,
+      #020817 45%,
+      #00030a 100%
+    );
+
+  animation: splashFadeOut 1s ease 6s forwards;
+}
+
+
+/* =========================
+   CENTRAL BLUE ENERGY
+========================= */
+
+.energy-glow {
+  position: absolute;
+
+  width: 450px;
+  height: 450px;
+
+  border-radius: 50%;
+
+  background: rgba(0, 132, 255, 0.18);
+
+  filter: blur(80px);
+
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.glow-two {
+  width: 250px;
+  height: 250px;
+
+  background: rgba(0, 200, 255, 0.25);
+
+  animation-delay: 0.5s;
+}
+
+
+/* =========================
+   ENERGY BEAM
+========================= */
+
+.energy-beam {
+  position: absolute;
+
+  width: 5px;
+  height: 0;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    #5ee7ff,
+    white,
+    #2196ff,
+    transparent
+  );
+
+  box-shadow:
+    0 0 15px #00bfff,
+    0 0 40px #008cff,
+    0 0 90px #0077ff;
+
+  animation: beamReveal 2s ease forwards;
+}
+
+
+/* =========================
+   TRISHUL
+========================= */
+
+.trishul-wrapper {
+  position: relative;
+
+  z-index: 5;
+
+  opacity: 0;
+
+  transform:
+    scale(0.15)
+    translateY(30px);
+
+  animation:
+    trishulReveal 2s cubic-bezier(.16,1,.3,1) 1.5s forwards,
+    trishulFloat 2s ease-in-out 3.5s infinite;
+}
+
+.trishul {
+  width: 210px;
+  height: 310px;
+
+  filter:
+    drop-shadow(0 0 8px #ff9d00)
+    drop-shadow(0 0 20px #ff6a00)
+    drop-shadow(0 0 45px #008cff);
+}
+
+.trishul-line {
+  fill: none;
+
+  stroke: #ffb000;
+
+  stroke-width: 7;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  filter:
+    drop-shadow(0 0 5px #ff7300)
+    drop-shadow(0 0 15px #ff9d00);
+
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+
+  animation:
+    drawTrishul 2s ease 1.7s forwards;
+}
+
+.trishul-line.shaft {
+  stroke-width: 8;
+}
+
+
+/* =========================
+   LIGHTNING
+========================= */
+
+.lightning {
+  position: absolute;
+
+  width: 2px;
+  height: 120px;
+
+  background: #8eeeff;
+
+  box-shadow:
+    0 0 8px #00bfff,
+    0 0 25px #008cff;
+
+  opacity: 0;
+}
+
+.lightning-1 {
+  transform: rotate(25deg);
+  left: 35%;
+  top: 30%;
+
+  animation: lightningFlash 0.8s ease 2.8s;
+}
+
+.lightning-2 {
+  transform: rotate(-35deg);
+  right: 35%;
+  top: 35%;
+
+  animation: lightningFlash 0.8s ease 3.1s;
+}
+
+.lightning-3 {
+  transform: rotate(70deg);
+  left: 42%;
+  top: 22%;
+
+  animation: lightningFlash 0.8s ease 3.4s;
+}
+
+.lightning-4 {
+  transform: rotate(-65deg);
+  right: 42%;
+  top: 25%;
+
+  animation: lightningFlash 0.8s ease 3.6s;
+}
+
+
+/* =========================
+   ENERGY BURST
+========================= */
+
+.energy-burst {
+  position: absolute;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+
+  border: 2px solid rgba(80, 220, 255, 0.8);
+
+  opacity: 0;
+
+  animation: burst 1.2s ease 3.6s forwards;
+}
+
+
+/* =========================
+   BRAND
+========================= */
+
+.brand {
+  position: absolute;
+
+  z-index: 10;
+
+  text-align: center;
+
+  opacity: 0;
+
+  transform: translateY(30px);
+
+  animation:
+    brandReveal 1.4s ease 4.4s forwards;
+}
+
+.brand-title {
+  font-size: 48px;
+
+  font-weight: 900;
+
+  letter-spacing: 12px;
+
+  color: white;
+
+  text-shadow:
+    0 0 10px #ffffff,
+    0 0 25px #00aaff,
+    0 0 50px #0077ff;
+}
+
+.brand-subtitle {
+  margin-top: 5px;
+
+  font-size: 22px;
+
+  font-weight: 600;
+
+  letter-spacing: 15px;
+
+  color: #63d9ff;
+
+  text-shadow:
+    0 0 10px #00aaff,
+    0 0 25px #0077ff;
+}
+
+
+/* =========================
+   LOADING LINE
+========================= */
+
+.loading-line {
+  position: absolute;
+
+  bottom: 55px;
+
+  width: 180px;
+  height: 2px;
+
+  background: rgba(255,255,255,0.15);
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  animation: loadingAppear 0.5s ease 4.5s forwards;
+}
+
+.loading-line span {
+  display: block;
+
+  width: 0%;
+  height: 100%;
+
+  background: #38bdf8;
+
+  box-shadow: 0 0 10px #38bdf8;
+
+  animation: loadingProgress 1.5s ease 4.5s forwards;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes beamReveal {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    height: 100vh;
+    opacity: 0.8;
+  }
+}
+
+
+@keyframes trishulReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.15) translateY(30px);
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+
+@keyframes drawTrishul {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+@keyframes trishulFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 0.8;
+  }
+}
+
+
+@keyframes lightningFlash {
+  0% {
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  40% {
+    opacity: 0;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+
+@keyframes burst {
+  0% {
+    opacity: 1;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(15);
+  }
+}
+
+
+@keyframes brandReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes loadingAppear {
+  to {
+    opacity: 1;
+  }
+}
+
+
+@keyframes loadingProgress {
+  to {
+    width: 100%;
+  }
+}
+
+
+@keyframes splashFadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .trishul {
+    width: 160px;
+    height: 240px;
+  }
+
+  .brand-title {
+    font-size: 32px;
+    letter-spacing: 7px;
+  }
+
+  .brand-subtitle {
+    font-size: 17px;
+    letter-spacing: 10px;
+  }
+
+}

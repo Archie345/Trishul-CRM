@@ -8,6 +8,7 @@ from app.models.lead import Lead
 from app.models.note import Note
 from app.models.customer import Customer
 from app.models.task import Task
+from app.models.notification import Notification
 from app.dependencies import get_current_user
 
 from app.routers.users import router as users_router
@@ -18,6 +19,7 @@ from app.routers.customers import router as customers_router
 from app.routers.tasks import router as tasks_router
 from app.routers.reports import router as reports_router
 from app.routers.ai import router as ai_router
+from app.routers.notifications import router as notifications_router
 from app.routers.dashboard import router as dashboard_router
 
 Base.metadata.create_all(bind=engine)
@@ -31,6 +33,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5174",
+        "http://localhost:5173",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -46,6 +49,7 @@ app.include_router(tasks_router)
 app.include_router(reports_router)
 app.include_router(ai_router)
 app.include_router(dashboard_router)
+app.include_router(notifications_router)
 
 @app.get("/")
 def root():

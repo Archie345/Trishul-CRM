@@ -14,6 +14,7 @@ export default function PageWrapper({ children }) {
       transition={{
         duration: 0.5,
       }}
+      className="w-full min-w-0 bg-slate-950"
     >
       {children}
     </motion.div>

@@ -18,7 +18,8 @@ class Task(Base):
 
     priority = Column(
         String(20),
-        default="Medium"
+        default="Medium",
+        nullable=False
     )
 
     status = Column(

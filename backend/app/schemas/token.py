@@ -6,5 +6,11 @@ class Token(BaseModel):
     token_type: str
 
 
-class TokenData(BaseModel):
-    email: str | None = None
+
+
+class GoogleLoginRequest(BaseModel):
+    id_token: str
+
+class ResetPasswordRequest(BaseModel):
+    token: str
+    new_password: str

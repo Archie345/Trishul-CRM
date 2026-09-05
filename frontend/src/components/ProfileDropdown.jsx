@@ -1,10 +1,61 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaUserCircle, FaCog, FaSignOutAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
+import api from "../api/api";
+
 export default function ProfileDropdown() {
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState(null);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchCurrentUser = async () => {
+      try {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+          return;
+        }
+
+        const response = await api.get("/auth/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        console.log("Logged-in user:", response.data);
+
+        setUser(response.data);
+      } catch (error) {
+        console.error(
+          "Failed to fetch user:",
+          error.response?.data || error.message
+        );
+      }
+    };
+
+    fetchCurrentUser();
+  }, []);
+
+  const getRoleLabel = (role) => {
+    if (!role) return "User";
+
+    switch (role.toLowerCase()) {
+      case "admin":
+        return "Administrator";
+
+      case "supervisor":
+        return "Supervisor";
+
+      case "employee":
+        return "User";
+
+      default:
+        return role.charAt(0).toUpperCase() + role.slice(1);
+    }
+  };
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -25,11 +76,11 @@ export default function ProfileDropdown() {
 
         <div className="text-left">
           <p className="text-white font-semibold">
-            Admin
+            {user?.full_name || "User"}
           </p>
 
           <p className="text-sm text-slate-400">
-            Administrator
+            {getRoleLabel(user?.role)}
           </p>
         </div>
       </button>

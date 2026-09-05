@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 
 from app.models.task import Task
 from app.schemas.task import TaskCreate, TaskUpdate
+from app.services.notification_service import create_notification
 
 
 def create_task(db: Session, task: TaskCreate):
@@ -17,7 +18,16 @@ def create_task(db: Session, task: TaskCreate):
     db.commit()
     db.refresh(new_task)
 
-    return new_task
+    # Create notification for assigned employee
+    notification = create_notification(
+        db=db,
+        user_id=new_task.assigned_to,
+        title="New Task Assigned",
+        message=f"New task '{new_task.title}' has been assigned to you.",
+        notification_type="task"
+    )
+
+    return new_task, notification
 
 
 def get_all_tasks(db: Session):

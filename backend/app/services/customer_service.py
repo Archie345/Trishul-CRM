@@ -3,11 +3,38 @@ from sqlalchemy.orm import Session
 from app.models.customer import Customer
 from app.models.lead import Lead
 
-from app.schemas.customer import CustomerUpdate
+from app.schemas.customer import (
+    CustomerCreate,
+    CustomerUpdate
+)
+
+
+def create_customer(
+    db: Session,
+    customer_data: CustomerCreate
+):
+    customer = Customer(
+        name=customer_data.name,
+        email=customer_data.email,
+        phone=customer_data.phone,
+        company=customer_data.company,
+        address=customer_data.address,
+        status=customer_data.status,
+        revenue=customer_data.revenue,
+        lead_id=None
+    )
+
+    db.add(customer)
+    db.commit()
+    db.refresh(customer)
+
+    return customer
 
 
 def convert_lead_to_customer(db: Session, lead_id: int):
-    lead = db.query(Lead).filter(Lead.id == lead_id).first()
+    lead = db.query(Lead).filter(
+        Lead.id == lead_id
+    ).first()
 
     if not lead:
         return None
@@ -43,8 +70,15 @@ def get_all_customers(db: Session):
     return db.query(Customer).all()
 
 
-def get_customer(db: Session, customer_id: int):
-    return db.query(Customer).filter(Customer.id == customer_id).first()
+def get_customer(
+    db: Session,
+    customer_id: int
+):
+    return (
+        db.query(Customer)
+        .filter(Customer.id == customer_id)
+        .first()
+    )
 
 
 def update_customer(

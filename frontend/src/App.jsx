@@ -2,7 +2,11 @@ import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import SplashScreen from "./components/SplashScreen";
+import CRMLayout from "./components/CRMLayout";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
+import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Leads from "./pages/Leads";
@@ -20,7 +24,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 7000);
+    }, 6500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -31,7 +35,22 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      {/* First page after Splash Screen */}
+      <Route path="/" element={<Register />} />
+
+      {/* Login page */}
+      <Route path="/login" element={<Login />} />
+
+      {/* Register page */}
+      <Route path="/register" element={<Register />} />
+
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+
+      <Route path="/reset-password" element={<ResetPassword />} />
+
+      {/* Application pages */}
+      <Route element={<CRMLayout />}>
+
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/leads" element={<Leads />} />
       <Route path="/customers" element={<Customers />} />
@@ -41,6 +60,7 @@ function App() {
       <Route path="/reports" element={<Reports />} />
       <Route path="/ai" element={<AI />} />
       <Route path="/settings" element={<Settings />} />
+      </Route>
     </Routes>
   );
 }

@@ -6,7 +6,7 @@ class TaskCreate(BaseModel):
     title: str
     description: str
     due_date: date
-    priority: str
+    priority: str = "medium"
     assigned_to: int
 
 

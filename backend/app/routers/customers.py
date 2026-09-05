@@ -6,11 +6,13 @@ from app.dependencies import get_current_user
 from app.models.user import User
 
 from app.schemas.customer import (
+    CustomerCreate,
     CustomerResponse,
     CustomerUpdate
 )
 
 from app.services.customer_service import (
+    create_customer,
     convert_lead_to_customer,
     get_all_customers,
     get_customer,
@@ -22,6 +24,14 @@ router = APIRouter(
     prefix="/customers",
     tags=["Customers"]
 )
+
+@router.post("/", response_model=CustomerResponse)
+def add_customer(
+    customer_data: CustomerCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    return create_customer(db, customer_data)
 
 
 @router.post("/convert/{lead_id}", response_model=CustomerResponse)

@@ -1,3 +1,4 @@
+from typing import Literal
 from pydantic import BaseModel, EmailStr
 
 
@@ -5,6 +6,7 @@ class UserCreate(BaseModel):
     full_name: str
     email: EmailStr
     password: str
+    role: Literal["admin", "supervisor", "employee"] = "employee"
 
 
 class UserResponse(BaseModel):
@@ -20,4 +22,4 @@ class UserResponse(BaseModel):
 class UserUpdate(BaseModel):
     full_name: str
     email: EmailStr
-    role: str
+    role: Literal["admin", "supervisor", "employee"]

@@ -15,7 +15,7 @@ export default function Settings() {
 
         <div>
           <h2 className="text-gray-400">Email</h2>
-          <p className="text-white">archie@example.com</p>
+          <p className="text-white">archie.tech24@gmail.com</p>
         </div>
 
         <div>

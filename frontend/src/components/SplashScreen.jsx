@@ -1,116 +1,82 @@
-import { motion } from "framer-motion";
-import logo from "../assets/logo.jpeg";
+import "./SplashScreen.css";
 
 export default function SplashScreen() {
   return (
-    <div className="fixed inset-0 overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 flex flex-col items-center justify-center">
+    <div className="splash-screen">
 
-      {/* Animated Background Glow */}
-      <motion.div
-        className="absolute w-[500px] h-[500px] rounded-full bg-blue-500/20 blur-3xl"
-        animate={{
-          scale: [1, 1.25, 1],
-          opacity: [0.3, 0.6, 0.3],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
+      {/* Background glow */}
+      <div className="energy-glow"></div>
+      <div className="energy-glow glow-two"></div>
 
-      {/* Floating Particles */}
-      {[...Array(20)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 h-2 bg-white rounded-full opacity-30"
-          initial={{
-            x: Math.random() * window.innerWidth,
-            y: window.innerHeight + 50,
-          }}
-          animate={{
-            y: -100,
-          }}
-          transition={{
-            duration: 8 + Math.random() * 3,
-            repeat: Infinity,
-            delay: Math.random() * 4,
-            ease: "linear",
-          }}
-        />
-      ))}
+      {/* Lightning particles */}
+      <div className="lightning lightning-1"></div>
+      <div className="lightning lightning-2"></div>
+      <div className="lightning lightning-3"></div>
+      <div className="lightning lightning-4"></div>
 
-      {/* Logo */}
-      <motion.img
-        src={logo}
-        alt="Trishul CRM"
-        className="w-44 h-44 rounded-full shadow-[0_0_60px_rgba(59,130,246,0.8)] z-10"
-        initial={{
-          scale: 0,
-          rotate: -180,
-          opacity: 0,
-        }}
-        animate={{
-          scale: [1, 1.05, 1],
-          y: [0, -10, 0],
-          rotate: 0,
-          opacity: 1,
-        }}
-        transition={{
-          duration: 2.8,
-          ease: "easeOut",
-        }}
-      />
+      {/* Central energy beam */}
+      <div className="energy-beam"></div>
 
-      {/* Title */}
-      <motion.h1
-        className="text-5xl font-bold text-white mt-8 z-10 tracking-wider"
-        initial={{
-          opacity: 0,
-          y: 40,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          delay: 2.5,
-          duration: 1.5,
-        }}
-      >
-        TRISHUL CRM
-      </motion.h1>
+      {/* Trishul */}
+      <div className="trishul-wrapper">
 
-      {/* Subtitle */}
-      <motion.p
-        className="text-blue-200 mt-4 text-lg z-10"
-        initial={{
-          opacity: 0,
-        }}
-        animate={{
-          opacity: 1,
-        }}
-        transition={{
-          delay: 4.2,
-          duration: 1.2,
-        }}
-      >
-        Smart Business Management
-      </motion.p>
+        <svg
+          className="trishul"
+          viewBox="0 0 200 300"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Left spear */}
+          <path
+            d="M70 105 L55 30 L72 72 L82 30 L91 105"
+            className="trishul-line"
+          />
 
-      {/* Loading Text */}
-      <motion.div
-        className="mt-10 text-gray-300 text-lg z-10"
-        animate={{
-          opacity: [0.3, 1, 0.3],
-        }}
-        transition={{
-          repeat: Infinity,
-          duration: 1.8,
-        }}
-      >
-        Initializing CRM...
-      </motion.div>
+          {/* Center spear */}
+          <path
+            d="M100 110 L100 15 L115 65 L100 50"
+            className="trishul-line"
+          />
+
+          {/* Right spear */}
+          <path
+            d="M109 105 L118 30 L128 72 L145 30 L130 105"
+            className="trishul-line"
+          />
+
+          {/* Central shaft */}
+          <path
+            d="M100 95 L100 260"
+            className="trishul-line shaft"
+          />
+
+          {/* Cross section */}
+          <path
+            d="M68 105 Q100 125 132 105"
+            className="trishul-line"
+          />
+
+          {/* Bottom handle */}
+          <path
+            d="M85 255 L115 255 L120 275 L80 275 Z"
+            className="trishul-line"
+          />
+        </svg>
+
+      </div>
+
+      {/* Energy burst */}
+      <div className="energy-burst"></div>
+
+      {/* Brand */}
+      <div className="brand">
+        <div className="brand-title">TRISHUL</div>
+        <div className="brand-subtitle">CRM</div>
+      </div>
+
+      {/* Loading line */}
+      <div className="loading-line">
+        <span></span>
+      </div>
 
     </div>
   );

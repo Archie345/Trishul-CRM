@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+
+# Environment files
+.env
+*.env
+
+# Firebase secrets
+firebase-service-account.json
+
+# Node
+node_modules/
+dist/
+
+# IDE
+.vscode/
+.idea/
