@@ -84,3 +84,14 @@ def debug_routes():
         }
         for route in app.routes
     ]
+
+@app.get("/debug/reports-routes")
+def debug_reports_routes():
+    return [
+        {
+            "path": getattr(route, "path", None),
+            "name": getattr(route, "name", None),
+            "type": route.__class__.__name__,
+        }
+        for route in reports_router.routes
+    ]
